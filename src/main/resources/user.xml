@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap  PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd"> 
+<sqlMap namespace="user"> 
+
+	<typeAlias alias="USER" type="UserTEO" />
+
+	<resultMap id="userResultMap" class="USER">
+		<result property="id" column="ID" />
+  		<result property="firstName" column="FIRSTNAME" />
+  		<result property="lastName" column="LASTNAME" />
+	</resultMap>
+	
+	<select id="getUserById" parameterClass="java.lang.Integer" resultMap="userResultMap">
+		  SELECT * FROM HIBERNATE_TABLE_1 WHERE ID = #value#
+	</select>
+	
+	<select id="getMaxId" resultClass="java.lang.Integer">
+		  SELECT MAX(ID) FROM HIBERNATE_TABLE_1
+	</select>
+	
+	<insert id="addUser" parameterClass="USER">
+		INSERT INTO HIBERNATE_TABLE_1 (ID,FIRSTNAME,LASTNAME)
+		 VALUES(#id#,#firstName#,#lastName#)
+	</insert>
+	
+	<delete id="deleteUserById" parameterClass="java.lang.Integer">
+		  DELETE FROM HIBERNATE_TABLE_1 WHERE ID = #value#
+	</delete>
+	
+</sqlMap>
