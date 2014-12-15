@@ -1,0 +1,29 @@
+apply plugin: 'java'
+
+apply plugin: 'eclipse'
+
+apply plugin: 'application'
+
+apply plugin: "application"
+
+mainClassName = "TestMain"
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile fileTree(dir: 'nonGradleLibs', includes: ['*.jar']) 
+    compile 'org.apache.ibatis:ibatis-sqlmap:2.3.4.726'
+    compile 'log4j:log4j:1.2.17'
+}
+
+jar {
+    baseName = 'gs-gradle'
+    version =  '0.1.0'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.11'
+}
